@@ -130,6 +130,8 @@
     <Compile Include="Controllers\Employees_vm.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Manager.cs" />
+    <Compile Include="Controllers\TracksController.cs" />
+    <Compile Include="Controllers\Tracks_vm.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +209,11 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Create.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Tracks\Index.cshtml" />
+    <Content Include="Views\Tracks\Sorted.cshtml" />
+    <Content Include="Views\Tracks\GetAllPop.cshtml" />
+    <Content Include="Views\Tracks\GetAllDeepPurple.cshtml" />
+    <Content Include="Views\Tracks\GetAllTop100Longest.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

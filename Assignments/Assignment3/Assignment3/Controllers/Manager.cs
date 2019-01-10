@@ -39,6 +39,7 @@ namespace Assignment3.Controllers
                 // To browser form
                 cfg.CreateMap<EmployeeBase, EmployeeEditProfileInfoForm>();
 
+                cfg.CreateMap<Track, TrackBase>();
             });
 
             mapper = config.CreateMapper();
@@ -131,6 +132,50 @@ namespace Assignment3.Controllers
 
                 return true;
             }
+        }
+
+        public IEnumerable<TrackBase> TrackGetAll()
+        {
+            return mapper.Map<IEnumerable<TrackBase>>(ds.Tracks);
+        }
+
+        public IEnumerable<TrackBase> TrackGetAllSorted()
+        {
+            var tracks = ds.Tracks
+                .OrderBy(o => o.AlbumId).ThenBy(o => o.Name);
+
+            return mapper.Map<IEnumerable<TrackBase>>(tracks);
+        }
+
+        public IEnumerable<TrackBase> TrackGetAllPop()
+        {
+            // Pop, GenreId = 9
+            var tracks = ds.Tracks
+                .Join(ds.Genres, t => t.GenreId, g => g.GenreId,
+                (t, g) => new { Track = t, GenreName = g.Name })  // Composite object of Track + Genre
+                .Where(t_g => t_g.GenreName == "Pop")
+                .OrderBy(t_g => t_g.Track.Name)
+                .Select(t_g => t_g.Track);  // Get back 'Track'
+
+            return mapper.Map<IEnumerable<TrackBase>>(tracks);
+        }
+
+        public IEnumerable<TrackBase> TrackGetAllDeepPurple()
+        {
+            var tracks = ds.Tracks
+                .Where(t => t.Composer == "Jon Lord")
+                .OrderBy(t => t.TrackId);
+
+            return mapper.Map<IEnumerable<TrackBase>>(tracks);
+        }
+
+        public IEnumerable<TrackBase> TrackGetAllTop100Longest()
+        {
+            var tracks = ds.Tracks
+                .OrderByDescending(t => t.Milliseconds)
+                .Take(100);
+
+            return mapper.Map<IEnumerable<TrackBase>>(tracks);
         }
     }
 }
