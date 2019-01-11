@@ -221,6 +221,8 @@
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\Invoices\Details.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

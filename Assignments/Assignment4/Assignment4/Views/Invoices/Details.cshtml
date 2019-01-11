@@ -1,0 +1,113 @@
+﻿@model Assignment4.Controllers.InvoiceWithInfo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InvoiceWithInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+    </dl>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustomerId)
+        </dd>
+
+        <dt>
+            Customer name
+        </dt>
+
+        @{
+            var customer = "";
+            if (string.IsNullOrEmpty(Model.Customer.Company))
+            {
+                customer = string.Format("{0} {1}", Model.Customer.FirstName, Model.Customer.LastName);
+            }
+            else
+            {
+                customer = string.Format("{0} {1} (from company {2})", Model.Customer.FirstName, Model.Customer.LastName, Model.Customer.Company);
+            }
+
+            var address = string.Format("{0} {1}", Model.Customer.City, Model.Customer.Country);
+        }
+        <dd>
+            @customer
+            <br />
+            @address
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Employee)
+        </dt>
+
+        @{ 
+            var employee = string.Format("{0} {1}", Model.Customer.Employee.FirstName, Model.Customer.Employee.LastName);
+        }
+        <dd>
+            @employee
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BillingState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BillingState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BillingCountry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BillingCountry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BillingPostalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BillingPostalCode)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InvoiceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
