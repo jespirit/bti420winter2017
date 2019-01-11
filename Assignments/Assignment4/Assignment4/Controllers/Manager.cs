@@ -97,6 +97,10 @@ namespace Assignment4.Controllers
             return mapper.Map<IEnumerable<EmployeeBase>>(ds.Employees);
         }
 
+        // ############################################################
+        // Employee
+        // ############################################################
+
         public EmployeeBase EmployeeGetById(int id)
         {
             var e = ds.Employees.Find(id);
@@ -159,6 +163,10 @@ namespace Assignment4.Controllers
                 return true;
             }
         }
+
+        // ############################################################
+        // Track
+        // ############################################################
 
         public IEnumerable<TrackBase> TrackGetAll()
         {
