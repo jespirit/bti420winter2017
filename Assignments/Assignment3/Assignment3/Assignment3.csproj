@@ -210,10 +210,6 @@
     <Content Include="Views\Employees\Create.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Tracks\Index.cshtml" />
-    <Content Include="Views\Tracks\Sorted.cshtml" />
-    <Content Include="Views\Tracks\GetAllPop.cshtml" />
-    <Content Include="Views\Tracks\GetAllDeepPurple.cshtml" />
-    <Content Include="Views\Tracks\GetAllTop100Longest.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -18,22 +18,22 @@ namespace Assignment3.Controllers
 
         public ActionResult Sorted()
         {
-            return View(m.TrackGetAllSorted());
+            return View("index", m.TrackGetAllSorted());
         }
 
-        public ActionResult GetAllPop()
+        public ActionResult Pop()
         {
-            return View(m.TrackGetAllPop());
+            return View("index", m.TrackGetAllPop());
         }
 
-        public ActionResult GetAllDeepPurple()
+        public ActionResult DeepPurple()
         {
-            return View(m.TrackGetAllDeepPurple());
+            return View("index", m.TrackGetAllDeepPurple());
         }
 
-        public ActionResult GetAllTop100Longest()
+        public ActionResult Longest()
         {
-            return View(m.TrackGetAllTop100Longest());
+            return View("index", m.TrackGetAllTop100Longest());
         }
 
         // GET: Tracks/Details/5
