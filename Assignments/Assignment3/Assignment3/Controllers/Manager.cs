@@ -163,7 +163,8 @@ namespace Assignment3.Controllers
         public IEnumerable<TrackBase> TrackGetAllDeepPurple()
         {
             var tracks = ds.Tracks
-                .Where(t => t.Composer == "Jon Lord")
+                // Same as t.Composer LIKE '%Jon Lord%'
+                .Where(t => t.Composer.Contains("Jon Lord"))
                 .OrderBy(t => t.TrackId);
 
             return mapper.Map<IEnumerable<TrackBase>>(tracks);
