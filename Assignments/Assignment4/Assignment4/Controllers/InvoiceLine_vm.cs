@@ -9,12 +9,15 @@ namespace Assignment4.Controllers
     public class InvoiceLineBase
     {
         [Key]
+        [Display(Name = "Invoice Line ID")]
         public int InvoiceLineId { get; set; }
 
         public int InvoiceId { get; set; }
 
+        [Display(Name = "Track ID")]
         public int TrackId { get; set; }
 
+        [Display(Name = "Unit Price")]
         public decimal UnitPrice { get; set; }
 
         public int Quantity { get; set; }

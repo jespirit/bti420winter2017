@@ -12,6 +12,7 @@ namespace Assignment4.Controllers
         public int MediaTypeId { get; set; }
 
         [StringLength(120)]
+        [Display(Name = "Format")]
         public string Name { get; set; }
     }
 }

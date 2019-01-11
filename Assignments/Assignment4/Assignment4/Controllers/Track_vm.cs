@@ -10,6 +10,7 @@ namespace Assignment4.Controllers
     {
         [Required]
         [StringLength(200)]
+        [Display(Name = "Track Name")]
         public string Name { get; set; }
 
         public int? AlbumId { get; set; }
