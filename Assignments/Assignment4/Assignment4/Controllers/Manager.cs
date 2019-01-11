@@ -39,6 +39,8 @@ namespace Assignment4.Controllers
                 // To browser form
                 cfg.CreateMap<EmployeeBase, EmployeeEditProfileInfoForm>();
 
+                cfg.CreateMap<Models.Customer, Controllers.CustomerBase>();
+
                 cfg.CreateMap<Track, TrackBase>();
             });
 
@@ -65,6 +67,30 @@ namespace Assignment4.Controllers
         // ProductAdd()
         // ProductEdit()
         // ProductDelete()
+
+        // ############################################################
+        // Customer
+        // ############################################################
+
+        // Attention 03 - Get all customers
+        // Notice the return type - it is almost ALWAYS a view model object or collection
+        public IEnumerable<CustomerBase> CustomerGetAll()
+        {
+            // The ds object is the data store
+            // It has a collection for each entity it manages
+
+            return mapper.Map<IEnumerable<CustomerBase>>(ds.Customers);
+        }
+
+        // Attention 04 - Get one customer by its identifier
+        public CustomerBase CustomerGetById(int id)
+        {
+            // Attempt to fetch the object
+            var o = ds.Customers.Find(id);
+
+            // Return the result, or null if not found
+            return (o == null) ? null : mapper.Map<CustomerBase>(o);
+        }
 
         public IEnumerable<EmployeeBase> EmployeeGetAll()
         {

@@ -126,9 +126,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Album_vm.cs" />
+    <Compile Include="Controllers\Artist_vm.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\Customer_vm.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\Employee_vm.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoiceLine_vm.cs" />
+    <Compile Include="Controllers\Invoice_vm.cs" />
     <Compile Include="Controllers\Manager.cs" />
     <Compile Include="Controllers\TracksController.cs" />
     <Compile Include="Controllers\Track_vm.cs" />
@@ -210,6 +216,8 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
