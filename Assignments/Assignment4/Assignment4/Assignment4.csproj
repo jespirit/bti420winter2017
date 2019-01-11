@@ -135,6 +135,7 @@
     <Compile Include="Controllers\Genre_vm.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceLine_vm.cs" />
+    <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\Invoice_vm.cs" />
     <Compile Include="Controllers\Manager.cs" />
     <Compile Include="Controllers\MediaType_vm.cs" />

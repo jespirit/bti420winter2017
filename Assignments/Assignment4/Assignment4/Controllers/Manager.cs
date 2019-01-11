@@ -42,6 +42,28 @@ namespace Assignment4.Controllers
                 cfg.CreateMap<Models.Customer, Controllers.CustomerBase>();
 
                 cfg.CreateMap<Track, TrackBase>();
+
+                // Invoice Details mappings
+                //----------------------------------------
+
+                cfg.CreateMap<Album, AlbumBase>();
+                cfg.CreateMap<Album, AlbumWithArtist>();
+
+                cfg.CreateMap<Artist, ArtistBase>();
+
+                cfg.CreateMap<Customer, CustomerWithInfo>();
+
+                cfg.CreateMap<Genre, GenreBase>();
+
+                cfg.CreateMap<Invoice, InvoiceBase>();
+                cfg.CreateMap<Invoice, InvoiceWithInfo>();
+
+                cfg.CreateMap<InvoiceLine, InvoiceLineBase>();
+                cfg.CreateMap<InvoiceLine, InvoiceLineWithInfo>();
+
+                cfg.CreateMap<MediaType, MediaTypeBase>();
+
+                cfg.CreateMap<Track, TrackWithInfo>();
             });
 
             mapper = config.CreateMapper();
@@ -211,6 +233,36 @@ namespace Assignment4.Controllers
                 .Take(100);
 
             return mapper.Map<IEnumerable<TrackBase>>(tracks);
+        }
+
+        // ############################################################
+        // Invoice
+        // ############################################################
+
+        public IEnumerable<InvoiceBase> InvoiceGetAll()
+        {
+            return mapper.Map<IEnumerable<InvoiceBase>>(ds.Invoices);
+        }
+
+        public InvoiceWithInfo InvoiceGetById(int id)
+        {
+            var invoice = ds.Invoices
+                //.Include("Customer")
+                .Include("Customer.Employee")
+                //.Include("InvoiceLines.Track")
+                .Include("InvoiceLines.Track.Genre")
+                .Include("InvoiceLines.Track.MediaType")
+                .Include("InvoiceLines.Track.Album.Artist")
+                .SingleOrDefault(i => i.InvoiceId == id);
+
+            if (invoice == null)
+            {
+                return null;
+            }
+            else
+            {
+                return mapper.Map<InvoiceWithInfo>(invoice);
+            }
         }
     }
 }
