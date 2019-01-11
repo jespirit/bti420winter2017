@@ -127,11 +127,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
-    <Compile Include="Controllers\Employees_vm.cs" />
+    <Compile Include="Controllers\Employee_vm.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Manager.cs" />
     <Compile Include="Controllers\TracksController.cs" />
-    <Compile Include="Controllers\Tracks_vm.cs" />
+    <Compile Include="Controllers\Track_vm.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
