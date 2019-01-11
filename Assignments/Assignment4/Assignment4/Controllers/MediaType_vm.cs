@@ -6,10 +6,10 @@ using System.Web;
 
 namespace Assignment4.Controllers
 {
-    public class ArtistBase
+    public class MediaTypeBase
     {
         [Key]
-        public int ArtistId { get; set; }
+        public int MediaTypeId { get; set; }
 
         [StringLength(120)]
         public string Name { get; set; }

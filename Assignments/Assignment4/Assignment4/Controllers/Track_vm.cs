@@ -27,4 +27,13 @@ namespace Assignment4.Controllers
 
         public decimal UnitPrice { get; set; }
     }
+
+    public class TrackWithInfo : TrackBase
+    {
+        public AlbumWithArtist Album { get; set; }
+
+        public GenreBase Genre { get; set; }
+
+        public MediaTypeBase MediaType { get; set; }
+    }
 }

@@ -53,4 +53,11 @@ namespace Assignment4.Controllers
         [StringLength(60)]
         public string Email { get; set; }
     }
+
+    public class CustomerWithInfo : CustomerBase
+    {
+        public int? SupportRepId { get; set; }
+
+        public EmployeeBase Employee { get; set; }
+    }
 }
