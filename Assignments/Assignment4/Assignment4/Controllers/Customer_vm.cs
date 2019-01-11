@@ -58,6 +58,7 @@ namespace Assignment4.Controllers
     {
         public int? SupportRepId { get; set; }
 
+        [Display(Name = "Sales Representative")]
         public EmployeeBase Employee { get; set; }
     }
 }
