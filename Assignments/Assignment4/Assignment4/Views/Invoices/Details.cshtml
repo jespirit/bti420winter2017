@@ -115,6 +115,9 @@
             Album, Composer(s)
         </th>
         <th>
+            Genre
+        </th>
+        <th>
             Unit Price
         </th>
         <th>
@@ -139,6 +142,9 @@
                 <div>Album: @Html.DisplayFor(modelItem => item.Track.Album.Title)</div>
                 <div>Composer(s): @Html.DisplayFor(modelItem => item.Track.Composer)</div>
                 <div>Format: @Html.DisplayFor(modelItem => item.Track.MediaType.Name)</div>
+            </td>
+            <td>
+                <div>@Html.DisplayFor(modelItem => item.Track.GenreName)</div>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UnitPrice)

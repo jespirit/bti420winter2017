@@ -33,7 +33,8 @@ namespace Assignment4.Controllers
     {
         public AlbumWithArtist Album { get; set; }
 
-        public GenreBase Genre { get; set; }
+        //public GenreBase Genre { get; set; }
+        public string GenreName { get; set; }
 
         public MediaTypeBase MediaType { get; set; }
     }

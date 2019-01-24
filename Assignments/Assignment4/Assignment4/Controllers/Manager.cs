@@ -53,7 +53,7 @@ namespace Assignment4.Controllers
 
                 cfg.CreateMap<Customer, CustomerWithInfo>();
 
-                cfg.CreateMap<Genre, GenreBase>();
+                //cfg.CreateMap<Genre, GenreBase>();
 
                 cfg.CreateMap<Invoice, InvoiceBase>();
                 cfg.CreateMap<Invoice, InvoiceWithInfo>();
