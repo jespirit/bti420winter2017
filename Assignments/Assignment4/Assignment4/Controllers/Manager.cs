@@ -47,9 +47,9 @@ namespace Assignment4.Controllers
                 //----------------------------------------
 
                 cfg.CreateMap<Album, AlbumBase>();
-                cfg.CreateMap<Album, AlbumWithArtist>();
+                //cfg.CreateMap<Album, AlbumWithArtist>();
 
-                cfg.CreateMap<Artist, ArtistBase>();
+                //cfg.CreateMap<Artist, ArtistBase>();
 
                 cfg.CreateMap<Customer, CustomerWithInfo>();
 

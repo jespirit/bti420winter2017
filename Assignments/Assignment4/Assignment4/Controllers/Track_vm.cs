@@ -31,7 +31,9 @@ namespace Assignment4.Controllers
 
     public class TrackWithInfo : TrackBase
     {
-        public AlbumWithArtist Album { get; set; }
+        public AlbumBase Album { get; set; }
+
+        public string AlbumArtistName { get; set; }
 
         //public GenreBase Genre { get; set; }
         public string GenreName { get; set; }

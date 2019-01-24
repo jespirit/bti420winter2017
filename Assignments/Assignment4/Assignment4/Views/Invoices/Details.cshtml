@@ -136,7 +136,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Track.Name)
-                <div>by @Html.DisplayFor(modelItem => item.Track.Album.Artist.Name)</div>
+                <div>by @Html.DisplayFor(modelItem => item.Track.AlbumArtistName)</div>
             </td>
             <td>
                 <div>Album: @Html.DisplayFor(modelItem => item.Track.Album.Title)</div>
