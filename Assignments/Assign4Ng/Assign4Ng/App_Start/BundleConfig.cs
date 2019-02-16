@@ -26,6 +26,16 @@ namespace Assignment4
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                "~/Scripts/angular-1.4.7/angular.js",
+                "~/Scripts/angular-1.4.7/angular-route.js",
+                "~/Scripts/angular-1.4.7/angular-animate.js",
+                "~/Scripts/angular-1.4.7/angular-resource.js",
+                "~/Scripts/angular-1.4.7/angular-messages.js",
+                "~/Scripts/angular-1.4.7/angular-message-format.js",
+                "~/Scripts/angular-1.4.7/angular-sanitize.js"
+            ));
         }
     }
 }
