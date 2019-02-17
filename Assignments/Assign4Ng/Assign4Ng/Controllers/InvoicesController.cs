@@ -19,6 +19,7 @@ namespace Assignment4.Controllers
         // GET: Invoices/Details/5
         public ActionResult Details(int? id)
         {
+            ViewData["InvoiceId"] = id.GetValueOrDefault();
             var invoice = m.InvoiceGetById(id.GetValueOrDefault());
 
             if (invoice == null)

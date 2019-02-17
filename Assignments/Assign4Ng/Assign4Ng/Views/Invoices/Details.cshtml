@@ -2,8 +2,8 @@
 @{
     ViewBag.Title = "Details";
 }
-<div id="invoiceApp">
-    <div ng-controller="invoiceController">
+<div id="invoiceApp" ng-controller="invoiceController">
+    <div ng-init="initialize('@ViewData["InvoiceId"]')">
         <h2>Invoice Details</h2>
         <div>
             <h4>Invoice and customer information</h4>
@@ -143,6 +143,19 @@
                     </td>
                 </tr>
             }
+        </table>
+        <table>
+            <tr>
+                <th>Slider</th>
+            </tr>
+            <tr ng-repeat="invoiceLine in invoice.invoiceLines">
+                <td>
+                    <slider ng-model="invoiceLine.unitPrice" min="slider.min" max="slider.max" step="slider.step" value="invoiceLine.unitPrice" precision="slider.precision"></slider>
+                </td>
+                <td>
+                    {{invoiceLine | json}}
+                </td>
+            </tr>
         </table>
     </div>
 </div>
