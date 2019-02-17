@@ -1,158 +1,155 @@
 ﻿@model Assignment4.Controllers.InvoiceWithInfo
-
 @{
     ViewBag.Title = "Details";
 }
+<div id="invoiceApp">
+    <div ng-controller="invoiceController">
+        <h2>Invoice Details</h2>
+        <div>
+            <h4>Invoice and customer information</h4>
+            <ul>
+                <li>@Html.ActionLink("Back to List", "Index")</li>
+            </ul>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.InvoiceId)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.InvoiceId)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.InvoiceDate)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.InvoiceDate)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Total)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Total)
+                </dd>
+            </dl>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Customer.CustomerId)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Customer.CustomerId)
+                </dd>
+                <dt>
+                    Customer name
+                </dt>
+                @{
+                    var customer = "";
+                    if (string.IsNullOrEmpty(Model.Customer.Company))
+                    {
+                        customer = string.Format("{0} {1}", Model.Customer.FirstName, Model.Customer.LastName);
+                    }
+                    else
+                    {
+                        customer = string.Format("{0} {1} (from company {2})", Model.Customer.FirstName, Model.Customer.LastName, Model.Customer.Company);
+                    }
 
-<h2>Invoice Details</h2>
-
-<div>
-    <h4>Invoice and customer information</h4>
-    <ul>
-        <li>@Html.ActionLink("Back to List", "Index")</li>
-    </ul>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.InvoiceId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.InvoiceId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.InvoiceDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.InvoiceDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Total)
-        </dd>
-    </dl>
-
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Customer.CustomerId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Customer.CustomerId)
-        </dd>
-
-        <dt>
-            Customer name
-        </dt>
-
-        @{
-            var customer = "";
-            if (string.IsNullOrEmpty(Model.Customer.Company))
+                    var address = string.Format("{0} {1}", Model.Customer.City, Model.Customer.State);
+                }
+                <dd>
+                    @customer
+                    <br />
+                    @address
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Customer.Employee)
+                </dt>
+                @{
+                    var employee = string.Format("{0} {1}", Model.Customer.Employee.FirstName, Model.Customer.Employee.LastName);
+                }
+                <dd>
+                    @employee
+                </dd>
+                <dt>
+                    Billing Address
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.BillingAddress)
+                    <br />
+                    @Html.DisplayFor(model => model.BillingCity)
+                    @Html.DisplayFor(model => model.BillingState)
+                    @Html.DisplayFor(model => model.BillingCountry)
+                    <br />
+                    @Html.DisplayFor(model => model.BillingPostalCode)
+                </dd>
+            </dl>
+        </div>
+        <h4>Line Item Detail</h4>
+        <table class="table">
+            <tr>
+                <th>
+                    Invoice Line ID
+                </th>
+                <th>
+                    Track ID
+                </th>
+                <th>
+                    Track Name, Artist
+                </th>
+                <th>
+                    Album, Composer(s)
+                </th>
+                <th>
+                    Genre
+                </th>
+                <th>
+                    Unit Price
+                </th>
+                <th>
+                    Slider
+                </th>
+                <th>
+                    Quantity
+                </th>
+            </tr>
+            @foreach (var item in Model.InvoiceLines)
             {
-                customer = string.Format("{0} {1}", Model.Customer.FirstName, Model.Customer.LastName);
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InvoiceLineId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TrackId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Track.Name)
+                        <div>by @Html.DisplayFor(modelItem => item.Track.AlbumArtistName)</div>
+                    </td>
+                    <td>
+                        <div>Album: @Html.DisplayFor(modelItem => item.Track.Album.Title)</div>
+                        <div>Composer(s): @Html.DisplayFor(modelItem => item.Track.Composer)</div>
+                        <div>Format: @Html.DisplayFor(modelItem => item.Track.MediaType.Name)</div>
+                    </td>
+                    <td>
+                        <div>@Html.DisplayFor(modelItem => item.Track.GenreName)</div>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                    </td>
+                    <td>
+                        <slider ng-model="slider.model" min="slider.min" max="slider.max" step="slider.step"></slider>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                </tr>
             }
-            else
-            {
-                customer = string.Format("{0} {1} (from company {2})", Model.Customer.FirstName, Model.Customer.LastName, Model.Customer.Company);
-            }
-
-            var address = string.Format("{0} {1}", Model.Customer.City, Model.Customer.State);
-        }
-        <dd>
-            @customer
-            <br />
-            @address
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Customer.Employee)
-        </dt>
-
-        @{
-            var employee = string.Format("{0} {1}", Model.Customer.Employee.FirstName, Model.Customer.Employee.LastName);
-        }
-        <dd>
-            @employee
-        </dd>
-
-        <dt>
-            Billing Address
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BillingAddress)
-            <br />
-            @Html.DisplayFor(model => model.BillingCity)
-            @Html.DisplayFor(model => model.BillingState)
-            @Html.DisplayFor(model => model.BillingCountry)
-            <br />
-            @Html.DisplayFor(model => model.BillingPostalCode)
-        </dd>
-
-    </dl>
+        </table>
+    </div>
 </div>
 
-<h4>Line Item Detail</h4>
-<table class="table">
-    <tr>
-        <th>
-            Invoice Line ID
-        </th>
-        <th>
-            Track ID
-        </th>
-        <th>
-            Track Name, Artist
-        </th>
-        <th>
-            Album, Composer(s)
-        </th>
-        <th>
-            Genre
-        </th>
-        <th>
-            Unit Price
-        </th>
-        <th>
-            Quantity
-        </th>
-    </tr>
-
-    @foreach (var item in Model.InvoiceLines)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.InvoiceLineId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrackId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Track.Name)
-                <div>by @Html.DisplayFor(modelItem => item.Track.AlbumArtistName)</div>
-            </td>
-            <td>
-                <div>Album: @Html.DisplayFor(modelItem => item.Track.Album.Title)</div>
-                <div>Composer(s): @Html.DisplayFor(modelItem => item.Track.Composer)</div>
-                <div>Format: @Html.DisplayFor(modelItem => item.Track.MediaType.Name)</div>
-            </td>
-            <td>
-                <div>@Html.DisplayFor(modelItem => item.Track.GenreName)</div>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-        </tr>
-    }
-
-</table>
+@section scripts {
+    <script src="~/Scripts/bootstrap-slider-10.3.2/bootstrap-slider.js"></script>
+    <script src="~/Scripts/bootstrap-slider-angular-latest.js"></script>
+    <!-- Note: Include other modules first before bootstrapping. -->
+    <script src="~/Scripts/Internal/app.js"></script>
+}

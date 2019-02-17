@@ -212,8 +212,14 @@
     <Content Include="Scripts\angular-1.4.7\angular-touch.min.js" />
     <Content Include="Scripts\angular-1.4.7\angular.js" />
     <Content Include="Scripts\angular-1.4.7\angular.min.js" />
+    <Content Include="Scripts\bootstrap-slider-10.3.2\bootstrap-slider.js" />
+    <Content Include="Scripts\bootstrap-slider-10.3.2\bootstrap-slider.min.js" />
+    <Content Include="Scripts\bootstrap-slider-10.3.2\css\bootstrap-slider.css" />
+    <Content Include="Scripts\bootstrap-slider-10.3.2\css\bootstrap-slider.min.css" />
+    <Content Include="Scripts\bootstrap-slider-angular-latest.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Internal\app.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
