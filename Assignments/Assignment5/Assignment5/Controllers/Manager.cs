@@ -49,15 +49,15 @@ namespace Assignment5.Controllers
 
                 cfg.CreateMap<Artist, ArtistBase>();
 
-                cfg.CreateMap<Customer, CustomerWithInfo>();
+                cfg.CreateMap<Customer, CustomerWithDetail>();
 
                 cfg.CreateMap<Genre, GenreBase>();
 
                 cfg.CreateMap<Invoice, InvoiceBase>();
-                cfg.CreateMap<Invoice, InvoiceWithInfo>();
+                cfg.CreateMap<Invoice, InvoiceWithDetail>();
 
                 cfg.CreateMap<InvoiceLine, InvoiceLineBase>();
-                cfg.CreateMap<InvoiceLine, InvoiceLineWithInfo>();
+                cfg.CreateMap<InvoiceLine, InvoiceLineWithDetail>();
 
                 cfg.CreateMap<MediaType, MediaTypeBase>();
 
@@ -197,7 +197,7 @@ namespace Assignment5.Controllers
             return mapper.Map<IEnumerable<InvoiceBase>>(ds.Invoices);
         }
 
-        public InvoiceWithInfo InvoiceGetById(int id)
+        public InvoiceWithDetail InvoiceGetById(int id)
         {
             var invoice = ds.Invoices
                 //.Include("Customer")
@@ -214,7 +214,7 @@ namespace Assignment5.Controllers
             }
             else
             {
-                return mapper.Map<InvoiceWithInfo>(invoice);
+                return mapper.Map<InvoiceWithDetail>(invoice);
             }
         }
 

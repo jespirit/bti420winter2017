@@ -23,7 +23,7 @@ namespace Assignment5.Controllers
         public int Quantity { get; set; }
     }
 
-    public class InvoiceLineWithInfo : InvoiceLineBase
+    public class InvoiceLineWithDetail : InvoiceLineBase
     {
         public TrackWithDetail Track { get; set; }
     }

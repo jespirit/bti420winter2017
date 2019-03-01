@@ -54,7 +54,7 @@ namespace Assignment5.Controllers
         public string Email { get; set; }
     }
 
-    public class CustomerWithInfo : CustomerBase
+    public class CustomerWithDetail : CustomerBase
     {
         public int? SupportRepId { get; set; }
 

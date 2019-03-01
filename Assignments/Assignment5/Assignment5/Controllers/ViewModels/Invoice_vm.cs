@@ -33,10 +33,10 @@ namespace Assignment5.Controllers
         public decimal Total { get; set; }
     }
 
-    public class InvoiceWithInfo : InvoiceBase
+    public class InvoiceWithDetail : InvoiceBase
     {
-        public CustomerWithInfo Customer { get; set; }
+        public CustomerWithDetail Customer { get; set; }
 
-        public IEnumerable<InvoiceLineWithInfo> InvoiceLines { get; set; }
+        public IEnumerable<InvoiceLineWithDetail> InvoiceLines { get; set; }
     }
 }
