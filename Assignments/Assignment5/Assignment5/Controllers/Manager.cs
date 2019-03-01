@@ -323,6 +323,20 @@ namespace Assignment5.Controllers
                 .Include("Album.Artist")
                 .Include("MediaType")
                 .Include("Genre")
+                .Where(t => t.Genre.Name == "Pop")
+                .OrderBy(t => t.Name);
+
+            return mapper.Map<IEnumerable<TrackWithDetail>>(tracks);
+        }
+
+        // This legacy version when using Include() will not include associated entities
+        public IEnumerable<TrackWithDetail> TrackGetAllPop_Legacy()
+        {
+            // Pop, GenreId = 9
+            var tracks = ds.Tracks
+                .Include("Album.Artist")
+                .Include("MediaType")
+                .Include("Genre")
                 .Join(ds.Genres, t => t.GenreId, g => g.GenreId,
                 (t, g) => new { Track = t, GenreName = g.Name })  // Composite object of Track + Genre
                 .Where(t_g => t_g.GenreName == "Pop")
