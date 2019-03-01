@@ -295,49 +295,66 @@ namespace Assignment5.Controllers
         // Track
         // ############################################################
 
-        public IEnumerable<TrackBase> TrackGetAll()
-        {
-            return mapper.Map<IEnumerable<TrackBase>>(ds.Tracks);
-        }
-
-        public IEnumerable<TrackBase> TrackGetAllSorted()
+        public IEnumerable<TrackWithDetail> TrackGetAll()
         {
             var tracks = ds.Tracks
-                .OrderBy(o => o.AlbumId).ThenBy(o => o.Name);
+                .Include("Album.Artist")
+                .Include("MediaType")
+                .Include("Genre");
 
-            return mapper.Map<IEnumerable<TrackBase>>(tracks);
+            return mapper.Map<IEnumerable<TrackWithDetail>>(tracks);
         }
 
-        public IEnumerable<TrackBase> TrackGetAllPop()
+        public IEnumerable<TrackWithDetail> TrackGetAllSorted()
+        {
+            var tracks = ds.Tracks
+                .Include("Album.Artist")
+                .Include("MediaType")
+                .Include("Genre")
+                .OrderBy(o => o.AlbumId).ThenBy(o => o.Name);
+
+            return mapper.Map<IEnumerable<TrackWithDetail>>(tracks);
+        }
+
+        public IEnumerable<TrackWithDetail> TrackGetAllPop()
         {
             // Pop, GenreId = 9
             var tracks = ds.Tracks
+                .Include("Album.Artist")
+                .Include("MediaType")
+                .Include("Genre")
                 .Join(ds.Genres, t => t.GenreId, g => g.GenreId,
                 (t, g) => new { Track = t, GenreName = g.Name })  // Composite object of Track + Genre
                 .Where(t_g => t_g.GenreName == "Pop")
                 .OrderBy(t_g => t_g.Track.Name)
                 .Select(t_g => t_g.Track);  // Get back 'Track'
 
-            return mapper.Map<IEnumerable<TrackBase>>(tracks);
+            return mapper.Map<IEnumerable<TrackWithDetail>>(tracks);
         }
 
-        public IEnumerable<TrackBase> TrackGetAllDeepPurple()
+        public IEnumerable<TrackWithDetail> TrackGetAllDeepPurple()
         {
             var tracks = ds.Tracks
+                .Include("Album.Artist")
+                .Include("MediaType")
+                .Include("Genre")
                 // Same as t.Composer LIKE '%Jon Lord%'
                 .Where(t => t.Composer.Contains("Jon Lord"))
                 .OrderBy(t => t.TrackId);
 
-            return mapper.Map<IEnumerable<TrackBase>>(tracks);
+            return mapper.Map<IEnumerable<TrackWithDetail>>(tracks);
         }
 
-        public IEnumerable<TrackBase> TrackGetAllTop100Longest()
+        public IEnumerable<TrackWithDetail> TrackGetAllTop100Longest()
         {
             var tracks = ds.Tracks
+                .Include("Album.Artist")
+                .Include("MediaType")
+                .Include("Genre")
                 .OrderByDescending(t => t.Milliseconds)
                 .Take(100);
 
-            return mapper.Map<IEnumerable<TrackBase>>(tracks);
+            return mapper.Map<IEnumerable<TrackWithDetail>>(tracks);
         }
 
         public IEnumerable<TrackWithDetail> TrackGetAllWithDetail()

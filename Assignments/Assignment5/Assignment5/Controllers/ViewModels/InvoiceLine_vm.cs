@@ -25,6 +25,6 @@ namespace Assignment5.Controllers
 
     public class InvoiceLineWithInfo : InvoiceLineBase
     {
-        public TrackWithInfo Track { get; set; }
+        public TrackWithDetail Track { get; set; }
     }
 }
