@@ -55,7 +55,7 @@ namespace Assignment4.Controllers
             }
             else
             {
-                return RedirectToAction("Details", addedItem);
+                return RedirectToAction("Details", new { id = addedItem.EmployeeId });
             }
         }
 
