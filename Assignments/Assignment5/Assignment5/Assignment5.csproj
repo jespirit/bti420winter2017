@@ -127,13 +127,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
-    <Compile Include="Controllers\Customer_vm.cs" />
+    <Compile Include="Controllers\ViewModels\Customer_vm.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
-    <Compile Include="Controllers\Employee_vm.cs" />
+    <Compile Include="Controllers\ViewModels\Employee_vm.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InvoiceLine_vm.cs" />
+    <Compile Include="Controllers\ViewModels\InvoiceLine_vm.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
-    <Compile Include="Controllers\Invoice_vm.cs" />
+    <Compile Include="Controllers\ViewModels\Invoice_vm.cs" />
     <Compile Include="Controllers\Manager.cs" />
     <Compile Include="Controllers\TracksController.cs" />
     <Compile Include="Controllers\ViewModels\Album_vm.cs" />
