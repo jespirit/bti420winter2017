@@ -126,21 +126,21 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\Album_vm.cs" />
-    <Compile Include="Controllers\Artist_vm.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\Customer_vm.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\Employee_vm.cs" />
-    <Compile Include="Controllers\Genre_vm.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceLine_vm.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\Invoice_vm.cs" />
     <Compile Include="Controllers\Manager.cs" />
-    <Compile Include="Controllers\MediaType_vm.cs" />
     <Compile Include="Controllers\TracksController.cs" />
-    <Compile Include="Controllers\Track_vm.cs" />
+    <Compile Include="Controllers\ViewModels\Album_vm.cs" />
+    <Compile Include="Controllers\ViewModels\Artist_vm.cs" />
+    <Compile Include="Controllers\ViewModels\Genre_vm.cs" />
+    <Compile Include="Controllers\ViewModels\MediaType_vm.cs" />
+    <Compile Include="Controllers\ViewModels\Track_vm.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,7 +214,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Tracks\Index.cshtml" />
     <Content Include="Views\Employees\Create.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
@@ -223,6 +222,9 @@
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Invoices\Index.cshtml" />
     <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\Tracks\Create.cshtml" />
+    <Content Include="Views\Tracks\Details.cshtml" />
+    <Content Include="Views\Tracks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

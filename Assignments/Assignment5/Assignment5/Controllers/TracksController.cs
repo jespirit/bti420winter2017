@@ -37,30 +37,52 @@ namespace Assignment5.Controllers
         }
 
         // GET: Tracks/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            var t = m.TrackGetByIdWithDetail(id.GetValueOrDefault());
+
+            if (t == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View(t);
+            }
         }
 
         // GET: Tracks/Create
         public ActionResult Create()
         {
-            return View();
+            // Create a form
+            var form = new TrackAddForm();
+
+            // Configure the SelectList for the item-selection element on the HTML Form
+            form.AlbumList = new SelectList(m.AlbumGetAll(), "AlbumId", "Title");
+            form.GenreList = new SelectList(m.GenreGetAll(), "GenreId", "Name");
+            form.MediaTypeList = new SelectList(m.MediaTypeGetAll(), "MediaTypeId", "Name");
+
+            return View(form);
         }
 
         // POST: Tracks/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(TrackAdd newTrack)
         {
-            try
+            if (!ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                return View(newTrack);
             }
-            catch
+
+            var addedTrack = m.TrackAdd(newTrack);
+
+            if (addedTrack == null)
             {
-                return View();
+                return View(newTrack);
+            }
+            else
+            {
+                return RedirectToAction("Details", new { id = addedTrack.TrackId });
             }
         }
 

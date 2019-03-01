@@ -14,12 +14,5 @@ namespace Assignment5.Controllers
         [Required]
         [StringLength(160)]
         public string Title { get; set; }
-
-        public int ArtistId { get; set; }
-    }
-
-    public class AlbumWithArtist : AlbumBase
-    {
-        public ArtistBase Artist { get; set; }
     }
 }

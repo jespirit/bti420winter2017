@@ -139,12 +139,12 @@
                 <div>by @Html.DisplayFor(modelItem => item.Track.AlbumArtistName)</div>
             </td>
             <td>
-                <div>Album: @Html.DisplayFor(modelItem => item.Track.Album.Title)</div>
+                <div>Album: @Html.DisplayFor(modelItem => item.Track.AlbumTitle)</div>
                 <div>Composer(s): @Html.DisplayFor(modelItem => item.Track.Composer)</div>
                 <div>Format: @Html.DisplayFor(modelItem => item.Track.MediaType.Name)</div>
             </td>
             <td>
-                <div>@Html.DisplayFor(modelItem => item.Track.GenreName)</div>
+                <div>@Html.DisplayFor(modelItem => item.Track.Genre.Name)</div>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.UnitPrice)

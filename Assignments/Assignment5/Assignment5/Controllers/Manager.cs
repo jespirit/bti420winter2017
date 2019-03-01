@@ -41,19 +41,17 @@ namespace Assignment5.Controllers
 
                 cfg.CreateMap<Models.Customer, Controllers.CustomerBase>();
 
-                cfg.CreateMap<Track, TrackBase>();
-
                 // Invoice Details mappings
                 //----------------------------------------
 
                 cfg.CreateMap<Album, AlbumBase>();
                 //cfg.CreateMap<Album, AlbumWithArtist>();
 
-                //cfg.CreateMap<Artist, ArtistBase>();
+                cfg.CreateMap<Artist, ArtistBase>();
 
                 cfg.CreateMap<Customer, CustomerWithInfo>();
 
-                //cfg.CreateMap<Genre, GenreBase>();
+                cfg.CreateMap<Genre, GenreBase>();
 
                 cfg.CreateMap<Invoice, InvoiceBase>();
                 cfg.CreateMap<Invoice, InvoiceWithInfo>();
@@ -63,7 +61,11 @@ namespace Assignment5.Controllers
 
                 cfg.CreateMap<MediaType, MediaTypeBase>();
 
-                cfg.CreateMap<Track, TrackWithInfo>();
+                cfg.CreateMap<Track, TrackBase>();
+                cfg.CreateMap<Track, TrackWithDetail>();
+
+                cfg.CreateMap<Track, TrackAddForm>();
+                cfg.CreateMap<TrackAdd, Track>();
             });
 
             mapper = config.CreateMapper();
@@ -187,6 +189,109 @@ namespace Assignment5.Controllers
         }
 
         // ############################################################
+        // Invoice
+        // ############################################################
+
+        public IEnumerable<InvoiceBase> InvoiceGetAll()
+        {
+            return mapper.Map<IEnumerable<InvoiceBase>>(ds.Invoices);
+        }
+
+        public InvoiceWithInfo InvoiceGetById(int id)
+        {
+            var invoice = ds.Invoices
+                //.Include("Customer")
+                .Include("Customer.Employee")
+                //.Include("InvoiceLines.Track")
+                .Include("InvoiceLines.Track.Genre")
+                .Include("InvoiceLines.Track.MediaType")
+                .Include("InvoiceLines.Track.Album.Artist")
+                .SingleOrDefault(i => i.InvoiceId == id);
+
+            if (invoice == null)
+            {
+                return null;
+            }
+            else
+            {
+                return mapper.Map<InvoiceWithInfo>(invoice);
+            }
+        }
+
+        // ############################################################
+        // Album
+        // ############################################################
+
+        // Attention 03 - Get all albums
+        // Notice the return type - it is almost ALWAYS a view model object or collection
+        public IEnumerable<AlbumBase> AlbumGetAll()
+        {
+            // The ds object is the data store
+            // It has a collection for each entity it manages
+
+            return mapper.Map<IEnumerable<AlbumBase>>(ds.Albums.OrderBy(a => a.Title));
+        }
+
+        // Attention 04 - Get one album by its identifier
+        public AlbumBase AlbumGetById(int id)
+        {
+            // Attempt to fetch the object
+            var o = ds.Albums.Find(id);
+
+            // Return the result, or null if not found
+            return (o == null) ? null : mapper.Map<AlbumBase>(o);
+        }
+
+        // ############################################################
+        // Artist
+        // ############################################################
+
+        public IEnumerable<ArtistBase> ArtistGetAll()
+        {
+
+            return mapper.Map<IEnumerable<ArtistBase>>(ds.Artists.OrderBy(a => a.Name));
+        }
+
+        // ############################################################
+        // MediaType
+        // ############################################################
+
+        public IEnumerable<MediaTypeBase> MediaTypeGetAll()
+        {
+            return mapper.Map<IEnumerable<MediaTypeBase>>(ds.MediaTypes.OrderBy(mt => mt.Name));
+        }
+
+        public MediaTypeBase MediaTypeGetById(int id)
+        {
+            var e = ds.MediaTypes.Find(id);
+
+            if (e == null)
+            {
+                return null;
+            }
+            else
+            {
+                return mapper.Map<MediaTypeBase>(e);
+            }
+        }
+
+        // ############################################################
+        // Genre
+        // ############################################################
+
+        public IEnumerable<GenreBase> GenreGetAll()
+        {
+            return mapper.Map<IEnumerable<GenreBase>>(ds.Genres.OrderBy(mt => mt.Name));
+        }
+
+        public GenreBase GenreGetById(int id)
+        {
+            var e = ds.Genres.Find(id);
+
+            return e == null ? null : mapper.Map<GenreBase>(e);
+        }
+
+        // ############################################################
         // Track
         // ############################################################
 
@@ -235,33 +340,62 @@ namespace Assignment5.Controllers
             return mapper.Map<IEnumerable<TrackBase>>(tracks);
         }
 
-        // ############################################################
-        // Invoice
-        // ############################################################
-
-        public IEnumerable<InvoiceBase> InvoiceGetAll()
+        public IEnumerable<TrackWithDetail> TrackGetAllWithDetail()
         {
-            return mapper.Map<IEnumerable<InvoiceBase>>(ds.Invoices);
+            var tracks = ds.Tracks
+                .Include("Album.Artist")
+                .Include("MediaType")
+                .Include("Genre");
+
+            return mapper.Map<IEnumerable<TrackWithDetail>>(tracks);
         }
 
-        public InvoiceWithInfo InvoiceGetById(int id)
+        public TrackBase TrackGetById(int id)
         {
-            var invoice = ds.Invoices
-                //.Include("Customer")
-                .Include("Customer.Employee")
-                //.Include("InvoiceLines.Track")
-                .Include("InvoiceLines.Track.Genre")
-                .Include("InvoiceLines.Track.MediaType")
-                .Include("InvoiceLines.Track.Album.Artist")
-                .SingleOrDefault(i => i.InvoiceId == id);
+            var e = ds.Tracks.Find(id);
 
-            if (invoice == null)
+            if (e == null)
             {
                 return null;
             }
             else
             {
-                return mapper.Map<InvoiceWithInfo>(invoice);
+                return mapper.Map<TrackBase>(e);
+            }
+        }
+
+        public TrackWithDetail TrackGetByIdWithDetail(int id)
+        {
+            var track = ds.Tracks
+                .Include("Album.Artist")
+                .Include("MediaType")
+                .Include("Genre")
+                .SingleOrDefault(t => t.TrackId == id);
+
+            return mapper.Map<TrackWithDetail>(track);
+        }
+
+        public TrackWithDetail TrackAdd(TrackAdd newTrack)
+        {
+            // Locate and validate album, genre, and media type
+            var a = ds.Albums.Find(newTrack.AlbumId);
+            var g = ds.Genres.Find(newTrack.GenreId);
+            var mt = ds.MediaTypes.Find(newTrack.MediaTypeId);
+
+            if (a == null || g == null || mt == null)
+            {
+                return null;
+            }
+            else
+            {
+                var addedTrack = ds.Tracks.Add(mapper.Map<Track>(newTrack));
+                addedTrack.Album = a;
+                addedTrack.Genre = g;
+                addedTrack.MediaType = mt;
+
+                ds.SaveChanges();
+
+                return addedTrack == null ? null : mapper.Map<TrackWithDetail>(addedTrack);
             }
         }
     }
