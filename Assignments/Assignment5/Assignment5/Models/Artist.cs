@@ -1,3 +1,5 @@
+using Assignment5.Data.Entity;
+
 namespace Assignment5.Models
 {
     using System;
@@ -7,7 +9,7 @@ namespace Assignment5.Models
     using System.Data.Entity.Spatial;
 
     [Table("Artist")]
-    public partial class Artist
+    public partial class Artist : IBaseEntity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Artist()
@@ -15,7 +17,8 @@ namespace Assignment5.Models
             Albums = new HashSet<Album>();
         }
 
-        public int ArtistId { get; set; }
+        [Required]
+        public int Id { get; set; }
 
         [StringLength(120)]
         public string Name { get; set; }

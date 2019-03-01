@@ -141,6 +141,24 @@
     <Compile Include="Controllers\ViewModels\Genre_vm.cs" />
     <Compile Include="Controllers\ViewModels\MediaType_vm.cs" />
     <Compile Include="Controllers\ViewModels\Track_vm.cs" />
+    <Compile Include="Data\Entity\_IBaseEntity.cs" />
+    <Compile Include="Data\Repositories\AlbumRepository.cs" />
+    <Compile Include="Data\Repositories\ArtistRepository.cs" />
+    <Compile Include="Data\Repositories\CustomerRepository.cs" />
+    <Compile Include="Data\Repositories\EmployeeRepository.cs" />
+    <Compile Include="Data\Repositories\GenreRepository.cs" />
+    <Compile Include="Data\Repositories\InvoiceLineRepository.cs" />
+    <Compile Include="Data\Repositories\InvoiceRepository.cs" />
+    <Compile Include="Data\Repositories\MediaTypeRepository.cs" />
+    <Compile Include="Data\Repositories\PlaylistRepository.cs" />
+    <Compile Include="Data\Repositories\TrackRepository.cs" />
+    <Compile Include="Data\_Repository\OrderByDirection.cs" />
+    <Compile Include="Data\_Repository\_BaseRepository.cs" />
+    <Compile Include="Data\_Repository\_IReadOnlyRepository.cs" />
+    <Compile Include="Data\_Repository\_IRepository.cs" />
+    <Compile Include="Data\_Repository\_ReadOnlyRepository.cs" />
+    <Compile Include="Data\UnitOfWork\_BaseUnitOfWork.cs" />
+    <Compile Include="Data\UnitOfWork\_IUnitOfWork.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -1,3 +1,5 @@
+using Assignment5.Data.Entity;
+
 namespace Assignment5.Models
 {
     using System;
@@ -7,7 +9,7 @@ namespace Assignment5.Models
     using System.Data.Entity.Spatial;
 
     [Table("Customer")]
-    public partial class Customer
+    public partial class Customer : IBaseEntity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customer()
@@ -15,7 +17,8 @@ namespace Assignment5.Models
             Invoices = new HashSet<Invoice>();
         }
 
-        public int CustomerId { get; set; }
+        [Required]
+        public int Id { get; set; }
 
         [Required]
         [StringLength(40)]

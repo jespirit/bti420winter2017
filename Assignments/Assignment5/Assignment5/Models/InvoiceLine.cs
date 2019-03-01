@@ -1,3 +1,5 @@
+using Assignment5.Data.Entity;
+
 namespace Assignment5.Models
 {
     using System;
@@ -7,9 +9,10 @@ namespace Assignment5.Models
     using System.Data.Entity.Spatial;
 
     [Table("InvoiceLine")]
-    public partial class InvoiceLine
+    public partial class InvoiceLine : IBaseEntity
     {
-        public int InvoiceLineId { get; set; }
+        [Required]
+        public int Id { get; set; }
 
         public int InvoiceId { get; set; }
 
