@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment5.Data.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -70,7 +71,7 @@ namespace Assignment5.Controllers
             }
             else
             {
-                return View(m.mapper.Map<EmployeeEditProfileInfoForm>(e));
+                return View(m._mapper.Map<EmployeeEditProfileInfoForm>(e));
             }
         }
 
