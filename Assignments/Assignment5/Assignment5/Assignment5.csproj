@@ -167,6 +167,10 @@
     <Compile Include="Migrations\201903020419361_InitialCreate.Designer.cs">
       <DependentUpon>201903020419361_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903020449144_ImplementRepositoryPattern.cs" />
+    <Compile Include="Migrations\201903020449144_ImplementRepositoryPattern.Designer.cs">
+      <DependentUpon>201903020449144_ImplementRepositoryPattern.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -253,6 +257,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903020419361_InitialCreate.resx">
       <DependentUpon>201903020419361_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903020449144_ImplementRepositoryPattern.resx">
+      <DependentUpon>201903020449144_ImplementRepositoryPattern.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
