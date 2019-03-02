@@ -134,7 +134,8 @@
     <Compile Include="Controllers\ViewModels\InvoiceLine_vm.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\ViewModels\Invoice_vm.cs" />
-    <Compile Include="Controllers\Manager.cs" />
+    <Compile Include="Data\Managers\_IChinookDataManager.cs" />
+    <Compile Include="Data\Managers\ChinookDataManager.cs" />
     <Compile Include="Controllers\TracksController.cs" />
     <Compile Include="Controllers\ViewModels\Album_vm.cs" />
     <Compile Include="Controllers\ViewModels\Artist_vm.cs" />
