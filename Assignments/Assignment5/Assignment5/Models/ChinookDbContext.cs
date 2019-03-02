@@ -2,14 +2,24 @@ using System;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core.Objects;
 
 namespace Assignment5.Models
 {
-    public partial class ChinookDbContext : DbContext
+    public partial class ChinookDbContext : DbContext, IDisposable
     {
         public ChinookDbContext()
             : base("name=ChinookDb")
         {
+        }
+
+        public void RefreshEntityState()
+        {
+            var objectContext = ((IObjectContextAdapter)this).ObjectContext;
+            var entites = this.ChangeTracker.Entries().Select(c => c.Entity).ToList();
+
+            objectContext.Refresh(RefreshMode.StoreWins, entites);
         }
 
         public virtual DbSet<Album> Albums { get; set; }
@@ -76,6 +86,11 @@ namespace Assignment5.Models
                 .HasMany(e => e.InvoiceLines)
                 .WithRequired(e => e.Track)
                 .WillCascadeOnDelete(false);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
         }
     }
 }
