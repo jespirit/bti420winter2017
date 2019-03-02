@@ -9,7 +9,7 @@ namespace Assignment5.Controllers
     public class InvoiceBase
     {
         [Key]
-        public int InvoiceId { get; set; }
+        public int Id { get; set; }
 
         public int CustomerId { get; set; }
 

@@ -9,7 +9,7 @@ namespace Assignment5.Controllers
     public class ArtistBase
     {
         [Key]
-        public int ArtistId { get; set; }
+        public int Id { get; set; }
 
         [StringLength(120)]
         public string Name { get; set; }

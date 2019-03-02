@@ -9,7 +9,7 @@ namespace Assignment5.Controllers
     public class GenreBase
     {
         [Key]
-        public int GenreId { get; set; }
+        public int Id { get; set; }
 
         [StringLength(120)]
         public string Name { get; set; }

@@ -9,7 +9,7 @@ namespace Assignment5.Controllers
     public class MediaTypeBase
     {
         [Key]
-        public int MediaTypeId { get; set; }
+        public int Id { get; set; }
 
         [StringLength(120)]
         [Display(Name = "Format")]

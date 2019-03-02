@@ -83,7 +83,7 @@ namespace Assignment5.Controllers
             }
             else
             {
-                return RedirectToAction("Details", new { id = addedTrack.TrackId });
+                return RedirectToAction("Details", new { id = addedTrack.Id });
             }
         }
 

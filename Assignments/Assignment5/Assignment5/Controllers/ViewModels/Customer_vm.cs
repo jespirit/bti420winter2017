@@ -15,7 +15,7 @@ namespace Assignment5.Controllers
     {
         // Notice that we must identify the key/identifier with a [Key] data annotation
         [Key]
-        public int CustomerId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(40)]

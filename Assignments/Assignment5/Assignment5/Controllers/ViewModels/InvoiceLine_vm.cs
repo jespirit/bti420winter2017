@@ -10,7 +10,7 @@ namespace Assignment5.Controllers
     {
         [Key]
         [Display(Name = "Invoice Line ID")]
-        public int InvoiceLineId { get; set; }
+        public int Id { get; set; }
 
         public int InvoiceId { get; set; }
 

@@ -53,13 +53,13 @@ namespace Assignment5.Controllers
     public class EmployeeBase : EmployeeAdd
     {
         [Key]
-        public int EmployeeId { get; set; }
+        public int Id { get; set; }
     }
 
     public class EmployeeEditProfileInfoForm
     {
         [Key]
-        public int EmployeeId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -108,7 +108,7 @@ namespace Assignment5.Controllers
     public class EmployeeEditProfileInfo
     {
         [Key]
-        public int EmployeeId { get; set; }
+        public int Id { get; set; }
 
         [StringLength(70)]
         public string Address { get; set; }

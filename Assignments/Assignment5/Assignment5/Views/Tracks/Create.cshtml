@@ -50,7 +50,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.AlbumList, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("AlbumId", Model.AlbumList, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownList("Id", Model.AlbumList, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.AlbumList, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -58,7 +58,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.GenreList, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("GenreId", Model.GenreList, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownList("Id", Model.GenreList, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.GenreList, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -66,7 +66,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.MediaTypeList, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("MediaTypeId", Model.MediaTypeList, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownList("Id", Model.MediaTypeList, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.MediaTypeList, "", new { @class = "text-danger" })
         </div>
     </div>

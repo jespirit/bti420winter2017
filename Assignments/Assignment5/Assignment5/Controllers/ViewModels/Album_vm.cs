@@ -9,7 +9,7 @@ namespace Assignment5.Controllers
     public class AlbumBase
     {
         [Key]
-        public int AlbumId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(160)]

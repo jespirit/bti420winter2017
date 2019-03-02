@@ -25,9 +25,9 @@ namespace Assignment5.Controllers
 
         public int AlbumId { get; set; }
 
-        public int MediaTypeId { get; set; }
-
         public int GenreId { get; set; }
+
+        public int MediaTypeId { get; set; }
     }
 
     public class TrackAddForm : TrackAdd
@@ -52,7 +52,7 @@ namespace Assignment5.Controllers
     public class TrackBase : TrackAdd
     {
         [Key]
-        public int TrackId { get; set; }
+        public int Id { get; set; }
     }
 
     public class TrackWithDetail : TrackBase

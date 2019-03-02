@@ -215,7 +215,7 @@ namespace Assignment5.Data.Managers
 
         public EmployeeBase EmployeeEditProfileInfo(EmployeeEditProfileInfo editItem)
         {
-            var e = this.Employees.Get(editItem.EmployeeId);
+            var e = this.Employees.Get(editItem.Id);
 
             if (e == null)
             {

@@ -81,10 +81,10 @@ namespace Assignment5.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("edit", new { id = newItem.EmployeeId });
+                return RedirectToAction("edit", new { id = newItem.Id });
             }
 
-            if (newItem.EmployeeId != id)
+            if (newItem.Id != id)
             {
                 // data tampering
                 return RedirectToAction("index");
@@ -94,11 +94,11 @@ namespace Assignment5.Controllers
 
             if (editItem == null)
             {
-                return RedirectToAction("edit", new { id = editItem.EmployeeId });
+                return RedirectToAction("edit", new { id = editItem.Id });
             }
             else
             {
-                return RedirectToAction("details", new { id = editItem.EmployeeId });
+                return RedirectToAction("details", new { id = editItem.Id });
             }
         }
 
