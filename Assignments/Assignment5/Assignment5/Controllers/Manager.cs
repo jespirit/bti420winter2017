@@ -206,7 +206,7 @@ namespace Assignment5.Controllers
                 .Include("InvoiceLines.Track.Genre")
                 .Include("InvoiceLines.Track.MediaType")
                 .Include("InvoiceLines.Track.Album.Artist")
-                .SingleOrDefault(i => i.InvoiceId == id);
+                .SingleOrDefault(i => i.Id == id);
 
             if (invoice == null)
             {
@@ -337,7 +337,7 @@ namespace Assignment5.Controllers
                 .Include("Album.Artist")
                 .Include("MediaType")
                 .Include("Genre")
-                .Join(ds.Genres, t => t.GenreId, g => g.GenreId,
+                .Join(ds.Genres, t => t.GenreId, g => g.Id,
                 (t, g) => new { Track = t, GenreName = g.Name })  // Composite object of Track + Genre
                 .Where(t_g => t_g.GenreName == "Pop")
                 .OrderBy(t_g => t_g.Track.Name)
@@ -354,7 +354,7 @@ namespace Assignment5.Controllers
                 .Include("Genre")
                 // Same as t.Composer LIKE '%Jon Lord%'
                 .Where(t => t.Composer.Contains("Jon Lord"))
-                .OrderBy(t => t.TrackId);
+                .OrderBy(t => t.Id);
 
             return mapper.Map<IEnumerable<TrackWithDetail>>(tracks);
         }
@@ -401,7 +401,7 @@ namespace Assignment5.Controllers
                 .Include("Album.Artist")
                 .Include("MediaType")
                 .Include("Genre")
-                .SingleOrDefault(t => t.TrackId == id);
+                .SingleOrDefault(t => t.Id == id);
 
             return mapper.Map<TrackWithDetail>(track);
         }
