@@ -15,10 +15,14 @@ namespace Assignment5.Data.Managers
 {
     public class ChinookDataManager : BaseUnitOfWork, IChinookDataManager
     {
-
         // AutoMapper components
         MapperConfiguration _config;
         public IMapper _mapper;
+
+        public ChinookDataManager() : base(new ChinookDbContext())
+        {
+            this.Initialize();
+        }
 
         public ChinookDataManager(DbContext db) : base(db)
         {

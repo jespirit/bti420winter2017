@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment5.Data.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +10,7 @@ namespace Assignment5.Controllers
     public class CustomersController : Controller
     {
         // Attention 06 - Reference to a manager object
-        private Manager m = new Manager();
+        private ChinookDataManager m = new ChinookDataManager();
 
         // GET: Customers
         // Attention 07 - Get all customers

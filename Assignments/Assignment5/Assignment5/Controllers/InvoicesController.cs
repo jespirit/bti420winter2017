@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment5.Data.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,7 +9,7 @@ namespace Assignment5.Controllers
 {
     public class InvoicesController : Controller
     {
-        Manager m = new Manager();
+        private ChinookDataManager m = new ChinookDataManager();
 
         // GET: Invoices
         public ActionResult Index()

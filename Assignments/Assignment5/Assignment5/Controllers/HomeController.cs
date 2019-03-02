@@ -9,7 +9,7 @@ namespace Assignment5.Controllers
     public class HomeController : Controller
     {
         // Reference to the data manager
-        private Manager m = new Manager();
+        private ChinookDataManager m = new ChinookDataManager();
 
         public ActionResult Index()
         {

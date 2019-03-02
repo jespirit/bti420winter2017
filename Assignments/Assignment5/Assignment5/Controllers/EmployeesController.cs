@@ -8,7 +8,7 @@ namespace Assignment5.Controllers
 {
     public class EmployeesController : Controller
     {
-        Manager m = new Manager();
+        private ChinookDataManager m = new ChinookDataManager();
 
         // GET: Employees
         public ActionResult Index()
