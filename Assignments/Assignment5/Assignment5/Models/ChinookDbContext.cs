@@ -12,6 +12,9 @@ namespace Assignment5.Models
         public ChinookDbContext()
             : base("name=ChinookDb")
         {
+            // Setting the initializer to null will execute each migration from the start
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ChinookDbContext, Assignment5.Migrations.Configuration>());
+            //Database.SetInitializer<ChinookDbContext>(null);
         }
 
         public void RefreshEntityState()
