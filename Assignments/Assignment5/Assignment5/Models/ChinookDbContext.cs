@@ -5,10 +5,10 @@ namespace Assignment5.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class DataContext : DbContext
+    public partial class ChinookDbContext : DbContext
     {
-        public DataContext()
-            : base("name=DataContext")
+        public ChinookDbContext()
+            : base("name=ChinookDb")
         {
         }
 

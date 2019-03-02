@@ -11,7 +11,7 @@ namespace Assignment5.Controllers
     public class Manager
     {
         // Reference to the data context
-        private DataContext ds = new DataContext();
+        private ChinookDbContext ds = new ChinookDbContext();
 
         // AutoMapper components
         MapperConfiguration config;

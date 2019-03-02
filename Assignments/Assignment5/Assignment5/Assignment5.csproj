@@ -146,8 +146,8 @@
     </Compile>
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
+    <Compile Include="Models\ChinookDbContext.cs" />
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Invoice.cs" />
