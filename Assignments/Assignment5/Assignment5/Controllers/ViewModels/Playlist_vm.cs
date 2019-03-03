@@ -7,6 +7,17 @@ using System.Web.Mvc;
 
 namespace Assignment5.Controllers
 {
+    public class PlaylistTrackBase
+    {
+        public int PlaylistId { get; set; }
+
+        public int TrackId { get; set; }
+
+        public int PlayOrder { get; set; }
+
+        public TrackBase Track { get; set; }
+    }
+
     public class PlaylistBase
     {
         [Key]
@@ -21,11 +32,11 @@ namespace Assignment5.Controllers
     {
         public PlaylistWithTracks()
         {
-            Tracks = new List<TrackBase>();
+            PlaylistTracks = new List<PlaylistTrackBase>();
         }
 
         [Display(Name = "List of tracks")]
-        public IEnumerable<TrackBase> Tracks { get; set; }
+        public IEnumerable<PlaylistTrackBase> PlaylistTracks { get; set; }
     }
 
     // ############################################################

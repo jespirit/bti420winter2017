@@ -14,7 +14,7 @@ namespace Assignment5.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Playlist()
         {
-            Tracks = new HashSet<Track>();
+            PlaylistTracks = new HashSet<PlaylistTrack>();
         }
 
         [Required]
@@ -24,6 +24,6 @@ namespace Assignment5.Models
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Track> Tracks { get; set; }
+        public virtual ICollection<PlaylistTrack> PlaylistTracks { get; set; }
     }
 }

@@ -98,6 +98,8 @@ namespace Assignment5.Data.Managers
                 cfg.CreateMap<Playlist, PlaylistEditTracksForm>();
 
                 cfg.CreateMap<PlaylistEditTracks, Playlist>();
+
+                cfg.CreateMap<PlaylistTrack, PlaylistTrackBase>();
             });
 
             _mapper = _config.CreateMapper();
@@ -499,8 +501,9 @@ namespace Assignment5.Data.Managers
 
         public IEnumerable<PlaylistBase> PlaylistGetAllWithTracks()
         {
-            var playlists = this.Playlists
-                .All(includes => includes.Tracks)
+            var playlists = this.Playlists.All(
+                includes => includes.PlaylistTracks,
+                includes => includes.PlaylistTracks.Select(pt => pt.Track))
                 .OrderBy(p => p.Name);
 
             return _mapper.Map<IEnumerable<PlaylistBase>>(playlists);
@@ -510,7 +513,8 @@ namespace Assignment5.Data.Managers
         {
             var playlist = this.Playlists.Find(
                 where => where.Id == id,
-                includes => includes.Tracks).SingleOrDefault();
+                includes => includes.PlaylistTracks,
+                includes => includes.PlaylistTracks.Select(pt => pt.Track)).SingleOrDefault();
 
             return playlist == null ? null : _mapper.Map<PlaylistWithTracks>(playlist);
         }
@@ -535,7 +539,8 @@ namespace Assignment5.Data.Managers
             // MUST fetch its associated collection
             var playlist = this.Playlists.Find(
                 where => where.Id == newPlaylist.Id,
-                includes => includes.Tracks).SingleOrDefault();
+                includes => includes.PlaylistTracks,
+                includes => includes.PlaylistTracks.Select(pt => pt.Track)).SingleOrDefault();
 
             if (playlist == null)
             {
@@ -547,14 +552,14 @@ namespace Assignment5.Data.Managers
                 // Update the object with the incoming values
 
                 // First, clear out the existing collection
-                playlist.Tracks.Clear();
+                playlist.PlaylistTracks.Clear();
 
                 // Then, go through the incoming items
                 // For each one, add to the fetched object's collection
                 foreach (var id in newPlaylist.TrackIds)
                 {
                     var track = this.Tracks.Get(id);
-                    playlist.Tracks.Add(track);
+                    playlist.PlaylistTracks.Add(new PlaylistTrack { Playlist = playlist, Track = track });
                 }
 
                 // Save changes

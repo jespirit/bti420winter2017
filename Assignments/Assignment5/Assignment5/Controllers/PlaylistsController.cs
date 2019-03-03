@@ -66,7 +66,7 @@ namespace Assignment5.Controllers
                 // For the multi select list, configure the "selected" items
                 // Notice the use of the Select() method, 
                 // which allows us to select/return/use only some properties from the source
-                var selectedValues = o.Tracks.Select(t => t.Id);
+                var selectedValues = o.PlaylistTracks.Select(pt => pt.TrackId);
 
                 // For clarity, use the named parameter feature of C#
                 form.TrackList = new MultiSelectList

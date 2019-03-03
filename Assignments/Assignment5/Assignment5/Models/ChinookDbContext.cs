@@ -34,6 +34,7 @@ namespace Assignment5.Models
         public virtual DbSet<InvoiceLine> InvoiceLines { get; set; }
         public virtual DbSet<MediaType> MediaTypes { get; set; }
         public virtual DbSet<Playlist> Playlists { get; set; }
+        public virtual DbSet<PlaylistTrack> PlaylistTracks { get; set; }
         public virtual DbSet<Track> Tracks { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -76,10 +77,24 @@ namespace Assignment5.Models
                 .WithRequired(e => e.MediaType)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Playlist>()
-                .HasMany(e => e.Tracks)
-                .WithMany(e => e.Playlists)
-                .Map(m => m.ToTable("PlaylistTrack").MapLeftKey("PlaylistId").MapRightKey("TrackId"));
+            // Define many-to-many table for provider-customer relationship pricings
+            modelBuilder.Entity<PlaylistTrack>()
+                .ToTable("PlaylistTrack")
+                .HasKey(pt =>
+                    new {
+                        pt.PlaylistId,
+                        pt.TrackId
+                    });
+
+            modelBuilder.Entity<PlaylistTrack>()
+                .HasRequired(pt => pt.Playlist)
+                .WithMany(p => p.PlaylistTracks)
+                .HasForeignKey(pt => pt.PlaylistId);
+
+            modelBuilder.Entity<PlaylistTrack>()
+                .HasRequired(pt => pt.Track)
+                .WithMany(t => t.PlaylistTracks)
+                .HasForeignKey(pt => pt.PlaylistId);
 
             modelBuilder.Entity<Track>()
                 .Property(e => e.UnitPrice)

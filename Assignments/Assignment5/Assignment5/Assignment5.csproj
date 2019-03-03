@@ -184,6 +184,7 @@
     <Compile Include="Models\InvoiceLine.cs" />
     <Compile Include="Models\MediaType.cs" />
     <Compile Include="Models\Playlist.cs" />
+    <Compile Include="Models\PlaylistTrack.cs" />
     <Compile Include="Models\Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

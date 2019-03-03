@@ -15,7 +15,7 @@ namespace Assignment5.Models
         public Track()
         {
             InvoiceLines = new HashSet<InvoiceLine>();
-            Playlists = new HashSet<Playlist>();
+            PlaylistTracks = new HashSet<PlaylistTrack>();
         }
 
         [Required]
@@ -51,6 +51,6 @@ namespace Assignment5.Models
         public virtual MediaType MediaType { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Playlist> Playlists { get; set; }
+        public virtual ICollection<PlaylistTrack> PlaylistTracks { get; set; }
     }
 }

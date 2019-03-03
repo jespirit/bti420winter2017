@@ -25,11 +25,11 @@
 
         <dt>Tracks</dt>
 
-            @if (Model.Tracks.Count() > 0)
+            @if (Model.PlaylistTracks.Count() > 0)
             {
-                foreach (var track in Model.Tracks)
+                foreach (var track in Model.PlaylistTracks)
                 {
-                    <dd>@track.Name</dd>
+                    <dd>@track.Track.Name</dd>
                     <br />
                 }
             }
