@@ -533,7 +533,9 @@ namespace Assignment5.Data.Managers
             // When editing an object with a to-many collection,
             // and you wish to edit the collection,
             // MUST fetch its associated collection
-            var playlist = this.Playlists.Get(newPlaylist.Id);
+            var playlist = this.Playlists.Find(
+                where => where.Id == newPlaylist.Id,
+                includes => includes.Tracks).SingleOrDefault();
 
             if (playlist == null)
             {
@@ -558,7 +560,7 @@ namespace Assignment5.Data.Managers
                 // Save changes
                 this._Db.SaveChanges();
 
-                return _mapper.Map<PlaylistWithTracks>(o);
+                return _mapper.Map<PlaylistWithTracks>(playlist);
             }
         }
 

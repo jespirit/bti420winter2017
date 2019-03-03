@@ -46,24 +46,69 @@ namespace Assignment5.Controllers
         }
 
         // GET: Playlists/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            // Attempt to fetch the matching object
+            var o = m.PlaylistGetByIdWithTracks(id.GetValueOrDefault());
+
+            if (o == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                // Create a form, based on the fetched matching object
+                //var form = m._mapper.Map<PlaylistEditTracksForm>(o);
+                var form = new PlaylistEditTracksForm();
+                form.Id = o.Id;
+                form.Name = o.Name;
+
+                // For the multi select list, configure the "selected" items
+                // Notice the use of the Select() method, 
+                // which allows us to select/return/use only some properties from the source
+                var selectedValues = o.Tracks.Select(t => t.Id);
+
+                // For clarity, use the named parameter feature of C#
+                form.TrackList = new MultiSelectList
+                    (items: m.TrackGetAll(),
+                    dataValueField: "Id",
+                    dataTextField: "Name",
+                    selectedValues: selectedValues);
+
+                return View(form);
+            }
         }
 
         // POST: Playlists/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int? id, PlaylistEditTracks editPlaylist)
         {
-            try
+            // Validate the input
+            if (!ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                // Our "version 1" approach is to display the "edit form" again
+                return RedirectToAction("Edit", new { id = editPlaylist.Id });
+            }
 
+            if (id.GetValueOrDefault() != editPlaylist.Id)
+            {
+                // This appears to be data tampering, so redirect the user away
                 return RedirectToAction("Index");
             }
-            catch
+
+            // Attempt to do the update
+            var editedPlaylist = m.PlaylistEditTracks(editPlaylist);
+
+            if (editedPlaylist == null)
             {
-                return View();
+                // There was a problem updating the object
+                // Our "version 1" approach is to display the "edit form" again
+                return RedirectToAction("Edit", new { id = editPlaylist.Id });
+            }
+            else
+            {
+                // Show the details view, which will have the updated data
+                return RedirectToAction("Details", new { id = editPlaylist.Id });
             }
         }
 

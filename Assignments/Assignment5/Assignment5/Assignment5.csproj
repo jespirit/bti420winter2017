@@ -256,6 +256,7 @@
     <Content Include="Views\Tracks\Details.cshtml" />
     <Content Include="Views\Tracks\Index.cshtml" />
     <Content Include="Views\Playlists\Details.cshtml" />
+    <Content Include="Views\Playlists\Edit.cshtml" />
     <Content Include="Views\Playlists\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
