@@ -14,7 +14,7 @@ namespace Assignment5.Controllers
         // GET: Playlists
         public ActionResult Index()
         {
-            return View();
+            return View(m.PlaylistGetAll());
         }
 
         // GET: Playlists/Details/5
