@@ -89,6 +89,15 @@ namespace Assignment5.Data.Managers
 
                 cfg.CreateMap<Track, TrackAddForm>();
                 cfg.CreateMap<TrackAdd, Track>();
+
+                // Playlist mappings
+                //----------------------------------------
+
+                cfg.CreateMap<Playlist, PlaylistBase>();
+                cfg.CreateMap<Playlist, PlaylistWithTracks>();
+                cfg.CreateMap<Playlist, PlaylistEditTracksForm>();
+
+                cfg.CreateMap<PlaylistEditTracks, Playlist>();
             });
 
             _mapper = _config.CreateMapper();
@@ -476,5 +485,98 @@ namespace Assignment5.Data.Managers
                 return _mapper.Map<TrackWithDetail>(addedTrack);
             }
         }
+
+        // ############################################################
+        // Employee
+        // ############################################################
+
+        public IEnumerable<PlaylistBase> PlaylistGetAll()
+        {
+            return _mapper.Map<IEnumerable<PlaylistBase>>(
+                this.Playlists.All().OrderBy(p => p.Name)
+            );
+        }
+
+        public IEnumerable<PlaylistBase> PlaylistGetAllWithTracks()
+        {
+            var playlists = this.Playlists
+                .All(includes => includes.Tracks)
+                .OrderBy(p => p.Name);
+
+            return _mapper.Map<IEnumerable<PlaylistBase>>(playlists);
+        }
+
+        public PlaylistWithTracks PlaylistGetByIdWithTracks(int id)
+        {
+            var playlist = this.Playlists.Find(
+                where => where.Id == id,
+                includes => includes.Tracks).SingleOrDefault();
+
+            return playlist == null ? null : _mapper.Map<PlaylistWithTracks>(playlist);
+        }
+
+        //public EmployeeBase PlaylistAdd(EmployeeAdd newItem)
+        //{
+        //    var addedEmployee = _mapper.Map<Employee>(newItem);
+
+        //    this.Employees.Add(addedEmployee);
+        //    this.SaveChanges();
+
+        //    return _mapper.Map<EmployeeBase>(addedEmployee);
+        //}
+
+        // Attention 11 - Edit an employee's job duties
+        public PlaylistWithTracks PlaylistEditTracks(PlaylistEditTracks newPlaylist)
+        {
+            // Attempt to fetch the object
+
+            // When editing an object with a to-many collection,
+            // and you wish to edit the collection,
+            // MUST fetch its associated collection
+            var playlist = this.Playlists.Get(newPlaylist.Id);
+
+            if (playlist == null)
+            {
+                // Problem - object was not found, so return
+                return null;
+            }
+            else
+            {
+                // Update the object with the incoming values
+
+                // First, clear out the existing collection
+                playlist.Tracks.Clear();
+
+                // Then, go through the incoming items
+                // For each one, add to the fetched object's collection
+                foreach (var id in newPlaylist.TrackIds)
+                {
+                    var track = this.Tracks.Get(id);
+                    playlist.Tracks.Add(track);
+                }
+
+                // Save changes
+                this._Db.SaveChanges();
+
+                return _mapper.Map<PlaylistWithTracks>(o);
+            }
+        }
+
+        //public bool EmployeeDelete(int id)
+        //{
+        //    var e = this.Employees.Get(id);
+
+        //    if (e == null)
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        this.Employees.Remove(e);
+        //        this.SaveChanges();
+
+        //        return true;
+        //    }
+        //}
     }
 }
