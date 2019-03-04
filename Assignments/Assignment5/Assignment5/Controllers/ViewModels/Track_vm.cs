@@ -65,5 +65,7 @@ namespace Assignment5.Controllers
         public MediaTypeBase MediaType { get; set; }
 
         public GenreBase Genre { get; set; }
+
+        public IEnumerable<PlaylistTrackBase> PlaylistTracks { get; set; }
     }
 }

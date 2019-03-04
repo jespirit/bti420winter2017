@@ -144,7 +144,10 @@ namespace Assignment5.Data.Managers
                 {
                     includes => includes.Album.Artist,
                     includes => includes.Genre,
-                    includes => includes.MediaType
+                    includes => includes.MediaType,
+                    // Include Playlist information
+                    includes => includes.PlaylistTracks,
+                    includes => includes.PlaylistTracks.Select(pt => pt.Playlist)
                 }
             }
         };

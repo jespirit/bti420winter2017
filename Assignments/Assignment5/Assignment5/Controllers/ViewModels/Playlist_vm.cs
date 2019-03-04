@@ -15,6 +15,8 @@ namespace Assignment5.Controllers
 
         public int PlayOrder { get; set; }
 
+        public PlaylistBase Playlist { get; set; }
+
         public TrackBase Track { get; set; }
     }
 

@@ -74,6 +74,23 @@
             @Html.DisplayFor(model => model.MediaType.Name)
         </dd>
 
+        <dt></dt>
+        <dd><hr /></dd>
+
+        <dt>Playlists</dt>
+
+            @if (Model.PlaylistTracks.Count() > 0)
+            {
+                foreach (var playlistTrack in Model.PlaylistTracks.OrderBy(pt => pt.Playlist.Name))
+                {
+                    <dd>@playlistTrack.Playlist.Name</dd>
+                    <br />
+                }
+            }
+            else
+            {
+                <dd><span>(none)</span></dd>
+            }
     </dl>
 </div>
 <p>
