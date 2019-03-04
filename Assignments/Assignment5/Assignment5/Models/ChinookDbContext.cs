@@ -94,7 +94,7 @@ namespace Assignment5.Models
             modelBuilder.Entity<PlaylistTrack>()
                 .HasRequired(pt => pt.Track)
                 .WithMany(t => t.PlaylistTracks)
-                .HasForeignKey(pt => pt.PlaylistId);
+                .HasForeignKey(pt => pt.TrackId);
 
             modelBuilder.Entity<Track>()
                 .Property(e => e.UnitPrice)
