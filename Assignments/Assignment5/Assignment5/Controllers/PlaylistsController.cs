@@ -70,7 +70,7 @@ namespace Assignment5.Controllers
 
                 // For clarity, use the named parameter feature of C#
                 form.TrackList = new MultiSelectList
-                    (items: m.TrackGetAll(),
+                    (items: m.TrackGetAll().OrderBy(t => t.Name),
                     dataValueField: "Id",
                     dataTextField: "Name",
                     selectedValues: selectedValues);
