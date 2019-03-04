@@ -173,6 +173,10 @@
     <Compile Include="Migrations\201903020449144_ImplementRepositoryPattern.Designer.cs">
       <DependentUpon>201903020449144_ImplementRepositoryPattern.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903040057482_AddPlaylistTrackM2nTable.cs" />
+    <Compile Include="Migrations\201903040057482_AddPlaylistTrackM2nTable.Designer.cs">
+      <DependentUpon>201903040057482_AddPlaylistTrackM2nTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
@@ -266,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903020449144_ImplementRepositoryPattern.resx">
       <DependentUpon>201903020449144_ImplementRepositoryPattern.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903040057482_AddPlaylistTrackM2nTable.resx">
+      <DependentUpon>201903040057482_AddPlaylistTrackM2nTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
