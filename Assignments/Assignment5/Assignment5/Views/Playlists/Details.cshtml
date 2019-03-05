@@ -27,9 +27,9 @@
 
             @if (Model.PlaylistTracks.Count() > 0)
             {
-                foreach (var playlistTrack in Model.PlaylistTracks.OrderBy(pt => pt.Track.Name))
+                foreach (var playlistTrack in Model.PlaylistTracks.OrderBy(pt => pt.PlayOrder))
                 {
-                    <dd>@playlistTrack.Track.Name</dd>
+                    <dd>@playlistTrack.Track.Name; Order=@playlistTrack.PlayOrder</dd>
                     <br />
                 }
             }

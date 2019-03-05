@@ -552,6 +552,7 @@ namespace Assignment5.Data.Managers
             }
             else
             {
+                var numList = Enumerable.Range(0, newPlaylist.TrackIds.Count()).ToList();
                 // Update the object with the incoming values
 
                 // First, clear out the existing collection
@@ -562,7 +563,9 @@ namespace Assignment5.Data.Managers
                 foreach (var id in newPlaylist.TrackIds)
                 {
                     var track = this.Tracks.Get(id);
-                    playlist.PlaylistTracks.Add(new PlaylistTrack { Playlist = playlist, Track = track });
+                    var playOrder = numList[new Random().Next(0, numList.Count())];
+                    numList.Remove(playOrder);
+                    playlist.PlaylistTracks.Add(new PlaylistTrack { Playlist = playlist, Track = track, PlayOrder = playOrder });
                 }
 
                 // Save changes
